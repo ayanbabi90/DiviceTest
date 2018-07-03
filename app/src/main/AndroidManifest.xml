@@ -24,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShowAllRunningAppActivity" />
+        <activity android:name=".activitys.RunningAppActivity" />
         <activity android:name=".activitys.VideoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -36,7 +36,8 @@
         </activity>
         <activity android:name=".activitys.Mp3_Activity" />
         <activity android:name=".activitys.ApkActivity" />
-        <activity android:name=".FragmentVActivity"></activity>
+        <activity android:name=".FragmentVActivity"
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>

@@ -6,7 +6,6 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -23,7 +22,7 @@ import com.github.lzyzsd.circleprogress.ArcProgress;
 import github.nisrulz.easydeviceinfo.base.EasyMemoryMod;
 import sensors.device.divicetest.activitys.ApkActivity;
 import sensors.device.divicetest.activitys.Mp3_Activity;
-import sensors.device.divicetest.activitys.VideoActivity;
+import sensors.device.divicetest.activitys.RunningAppActivity;
 
 public class MainActivity extends AppCompatActivity{
     ImageView filesImageV, processorImageV,mpr3img;
@@ -38,11 +37,42 @@ public class MainActivity extends AppCompatActivity{
 
         mpr3img = findViewById(R.id.dashMp3Id);
         arc_progress2 = findViewById(R.id.arc_progress2);
-        filesImageV = findViewById(R.id.filesImageID);
+        filesImageV = findViewById(R.id.deviceInfoID);
         processorImageV = findViewById(R.id.processorImageID);
         apkImage = findViewById(R.id.apkImageID);
 
+        //*********************RAM*************************************
+        arcProgress = findViewById(R.id.arc_progress);
 
+        int ramF = getFreeRam();
+        int ramT = getTotalRam();
+        int ramPercentage = getRamPercentage();
+        String value1 = String.valueOf(ramF);
+        String valu2 = String.valueOf(ramT);
+
+        arcProgress.setProgress(ramPercentage);
+        arcProgress.setBottomText(value1 + " MB /" + valu2 + " MB");
+        arcProgress.setMax(100);
+        arcProgress.setArcAngle(270);
+        arcProgress.setStrokeWidth(18);
+        arcProgress.setBottomTextSize(28);
+
+        arcProgress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Flubber.with()
+                        .animation(Flubber.AnimationPreset.MORPH)         // Slide up animation
+                        .repeatCount(1)                                 // Repeat once
+                        .duration(1000)                               // Last for 1000 milliseconds(1 second)
+                        .createFor(v)                                // Apply it to the view
+                        .start();                                   // Start it now
+            }
+        });
+
+
+
+
+        //****************SD CARD***************************
         EasyMemoryMod easyMemoryMod = new EasyMemoryMod(MainActivity.this);
 
         String iA = String.valueOf( easyMemoryMod.convertToGb(easyMemoryMod.getAvailableInternalMemorySize()));
@@ -52,13 +82,7 @@ public class MainActivity extends AppCompatActivity{
         String iT2 = iT.substring(0,iT.length()-5);
 
         int total = totalsd(iT2);
-
         int per = sdpercentage(iA2,iT2);
-
-        new RamInRealTime().execute();
-
-
-
 
         arc_progress2.setMax(100);
         arc_progress2.setProgress(per);
@@ -84,7 +108,7 @@ public class MainActivity extends AppCompatActivity{
         filesImageV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, VideoActivity.class);
+                Intent intent = new Intent(MainActivity.this, FragmentVActivity.class);
                 startActivity(intent);
 
             }
@@ -92,7 +116,7 @@ public class MainActivity extends AppCompatActivity{
         processorImageV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ShowAllRunningAppActivity.class);
+                Intent intent = new Intent(MainActivity.this, RunningAppActivity.class);
                 startActivity(intent);
             }
         });
@@ -189,62 +213,7 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
-    public class Wraper{
-        public int FreeRam;
-        public int percentageRam;
 
-    }
-
-
-    public class RamInRealTime extends AsyncTask<Void,Void,Wraper>{
-        @Override
-        protected Wraper doInBackground(Void... voids) {
-
-            // do something in the loop
-            int ramF = getFreeRam();
-
-            int ramPercentage = getRamPercentage();
-
-            Wraper wraper = new Wraper();
-
-            wraper.FreeRam = ramF;
-            wraper.percentageRam = ramPercentage;
-
-            return wraper;
-        }
-
-        @Override
-        protected void onPostExecute(Wraper wraper) {
-            arcProgress = findViewById(R.id.arc_progress);
-
-            String value1 = String.valueOf(wraper.FreeRam);
-            String valu2 = String.valueOf(getTotalRam());
-
-
-            arcProgress.setProgress(wraper.percentageRam);
-            arcProgress.setBottomText(value1 + " MB /" + valu2 + " MB");
-            arcProgress.setMax(100);
-            arcProgress.setArcAngle(270);
-            arcProgress.setStrokeWidth(18);
-            arcProgress.setBottomTextSize(28);
-
-            arcProgress.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                Flubber.with()
-                        .animation(Flubber.AnimationPreset.MORPH)         // Slide up animation
-                        .repeatCount(1)                                 // Repeat once
-                        .duration(1000)                               // Last for 1000 milliseconds(1 second)
-                        .createFor(v)                                // Apply it to the view
-                        .start();                                   // Start it now
-                }
-            });
-
-
-
-            super.onPostExecute(wraper);
-        }
-    }
 
 
 

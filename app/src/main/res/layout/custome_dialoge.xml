@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="320dp"
+    android:layout_height="465dp"
+    android:layout_gravity="center"
+    android:background="@drawable/corner_circle"
+    android:padding="5dp">
+
+
+    <Button
+        android:id="@+id/okDID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="34dp"
+        android:text="chose"
+        android:textColor="@android:color/holo_purple" />
+
+
+    <ImageView
+        android:id="@+id/ImgV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@color/fuckingcolor"
+        android:padding="80dp"
+        android:scaleType="fitCenter"
+        android:visibility="invisible" />
+
+</RelativeLayout>

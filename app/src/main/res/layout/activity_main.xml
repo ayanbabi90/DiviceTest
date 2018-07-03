@@ -7,7 +7,6 @@
     android:orientation="vertical">
 
 
-
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,7 +15,7 @@
 
         <com.github.lzyzsd.circleprogress.ArcProgress
             android:id="@+id/arc_progress"
-            android:layout_width="216dp"
+            android:layout_width="215dp"
             android:layout_height="215dp"
             android:layout_marginEnd="145dp"
             android:layout_marginLeft="16dp"
@@ -40,24 +39,24 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="14dp"
             android:layout_marginRight="8dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="104dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="152dp"
             android:clickable="true"
             android:padding="6dp"
             app:arc_bottom_text="SDCARD"
             app:arc_finished_color="#ffffff"
             app:arc_text_color="#ffffff"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toEndOf="@+id/arc_progress"
             app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.v7.widget.CardView
             android:id="@+id/cardView2"
-            android:layout_width="310dp"
-            android:layout_height="225dp"
+            android:layout_width="330dp"
+            android:layout_height="230dp"
             android:layout_marginBottom="24dp"
             android:layout_marginEnd="10dp"
             android:layout_marginLeft="10dp"
@@ -73,49 +72,55 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/filesImageID"
+                <ImageButton
+                    android:id="@+id/deviceInfoID"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="48dp"
-                    android:layout_marginEnd="40dp"
-                    android:layout_marginRight="40dp"
-                    android:src="@mipmap/videoico"
+                    android:layout_marginEnd="42dp"
+                    android:layout_marginRight="42dp"
+                    android:background="@drawable/ripple_effects"
+                    android:layout_marginTop="38dp"
+                    android:src="@mipmap/device_details"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/temperatureImageID"
                     android:layout_width="48dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="40dp"
-                    android:layout_marginLeft="48dp"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginStart="48dp"
-                    android:layout_marginTop="23dp"
+                    android:layout_marginEnd="54dp"
+                    android:layout_marginLeft="38dp"
+                    android:layout_marginRight="54dp"
+                    android:layout_marginStart="38dp"
+                    android:background="@drawable/ripple_effects"
+                    android:layout_marginTop="38dp"
                     android:src="@mipmap/temprature"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/folderImageID"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintEnd_toStartOf="@+id/dashMp3Id"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/exrt" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/folderImageID"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
-                    android:layout_marginLeft="48dp"
-                    android:layout_marginStart="48dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="52dp"
+                    android:layout_marginStart="52dp"
+                    android:background="@drawable/ripple_effects"
+                    android:layout_marginTop="32dp"
                     android:src="@mipmap/trashbin"
                     app:layout_constraintStart_toEndOf="@+id/processorImageID"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/processorImageID"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
                     android:layout_marginStart="40dp"
                     android:layout_marginTop="32dp"
+                    android:background="@drawable/ripple_effects"
                     android:src="@mipmap/app_launch"
                     app:layout_constraintBottom_toTopOf="@+id/exrt"
                     app:layout_constraintStart_toStartOf="parent"
@@ -126,13 +131,11 @@
                     android:id="@+id/exrt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="48dp"
                     android:layout_marginLeft="24dp"
                     android:layout_marginStart="24dp"
                     android:text="Phone Booster"
                     android:textColor="@color/deepPurple360"
                     android:textSize="12sp"
-                    app:layout_constraintBottom_toTopOf="@+id/apkImageID"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/processorImageID" />
 
@@ -140,81 +143,72 @@
                     android:id="@+id/apkImageID"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="48dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="32dp"
                     android:background="@drawable/ripple_effects"
                     android:src="@mipmap/apkico"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginRight="25dp"
                     android:text="App Uninstaller"
                     android:textColor="@color/deepPurple360"
                     android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/apkImageID"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/apkImageID" />
 
                 <ImageButton
                     android:id="@+id/dashMp3Id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="48dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="48dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="48dp"
+                    android:layout_marginEnd="52dp"
+                    android:layout_marginRight="52dp"
                     android:background="@drawable/ripple_effects"
                     android:soundEffectsEnabled="true"
                     android:src="@mipmap/mp3ico"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/filesImageID"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/apkImageID" />
+                    app:layout_constraintEnd_toStartOf="@+id/deviceInfoID" />
 
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="Mp3"
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginStart="55dp"
+                    android:text="Music"
                     android:textColor="@color/deepPurple360"
                     android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dashMp3Id"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintStart_toEndOf="@+id/textView6"
+                    app:layout_constraintTop_toBottomOf="@+id/dashMp3Id" />
 
                 <TextView
                     android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="47dp"
-                    android:layout_marginRight="47dp"
-                    android:text="Video"
+                    android:layout_marginEnd="38dp"
+                    android:layout_marginRight="38dp"
+                    android:text="Device Info"
                     android:textColor="@color/deepPurple360"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/filesImageID"
+                    app:layout_constraintTop_toBottomOf="@+id/deviceInfoID"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="22dp"
-                    android:layout_marginStart="22dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
                     android:text="Junk Cleaner"
                     android:textColor="@color/deepPurple360"
                     android:textSize="12sp"
@@ -225,19 +219,42 @@
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="29dp"
-                    android:layout_marginLeft="28dp"
-                    android:layout_marginRight="29dp"
-                    android:layout_marginStart="28dp"
-                    android:text="CPU Tem"
+                    android:layout_marginBottom="32dp"
+                    android:layout_marginLeft="31dp"
+                    android:layout_marginStart="31dp"
+                    android:text="CPU Cooler"
                     android:textColor="@color/deepPurple360"
                     android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/temperatureImageID" />
 
             </android.support.constraint.ConstraintLayout>
         </android.support.v7.widget.CardView>
+
+        <ImageButton
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/settings_nav" />
+
+        <ImageButton
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/add_gift" />
 
 
     </android.support.constraint.ConstraintLayout>
