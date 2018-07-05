@@ -20,13 +20,13 @@ import java.util.List;
 
 import sensors.device.divicetest.R;
 
-public class ApkAdapter extends RecyclerView.Adapter<ApkAdapter.ApkAdapterViewHolder> {
+public class Adapter_backup_apkManager extends RecyclerView.Adapter<Adapter_backup_apkManager.ApkAdapterViewHolder> {
 
-    List<String >apkList;
-    List<String>apkPath;
+    List<String> apkList;
+    List<String> apkPath;
     Context context;
 
-    public ApkAdapter(List<String> apkList, List<String> apkPath, Context context) {
+    public Adapter_backup_apkManager(List<String> apkList, List<String> apkPath, Context context) {
 
         this.apkList = apkList;
         this.apkPath = apkPath;
@@ -37,7 +37,7 @@ public class ApkAdapter extends RecyclerView.Adapter<ApkAdapter.ApkAdapterViewHo
     @Override
     public ApkAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int position) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.apk_layout,parent,false);
+        View view = layoutInflater.inflate(R.layout.apk_layout, parent, false);
         return new ApkAdapterViewHolder(view);
     }
 
@@ -53,7 +53,7 @@ public class ApkAdapter extends RecyclerView.Adapter<ApkAdapter.ApkAdapterViewHo
                 File file = new File(apkPath.get(position));
 
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setDataAndType(Uri.fromFile(file),"application/vnd.android.package-archive");
+                intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
                 (context).startActivity(intent);
             }
         });
@@ -72,10 +72,10 @@ public class ApkAdapter extends RecyclerView.Adapter<ApkAdapter.ApkAdapterViewHo
 
                         File file2 = new File(apkList.get(position));
                         boolean bf3 = file2.delete();
-                        if (!bf3){
-                            Toast.makeText(context,"error deleting file"+apkList.get(position),Toast.LENGTH_LONG).show();
-                        }else {
-                            Toast.makeText(context,"success deleting file"+apkList.get(position),Toast.LENGTH_LONG).show();
+                        if (!bf3) {
+                            Toast.makeText(context, "error deleting file" + apkList.get(position), Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(context, "success deleting file" + apkList.get(position), Toast.LENGTH_LONG).show();
                             apkList.remove(position);
                             notifyDataSetChanged();
                         }
@@ -91,16 +91,13 @@ public class ApkAdapter extends RecyclerView.Adapter<ApkAdapter.ApkAdapterViewHo
                     }
                 });
 
-                AlertDialog dialog =builder.create();
+                AlertDialog dialog = builder.create();
                 dialog.show();
-
 
 
                 return true;
             }
         });
-
-
 
 
     }
@@ -110,7 +107,7 @@ public class ApkAdapter extends RecyclerView.Adapter<ApkAdapter.ApkAdapterViewHo
         return apkList.size();
     }
 
-    public class ApkAdapterViewHolder extends RecyclerView.ViewHolder{
+    public class ApkAdapterViewHolder extends RecyclerView.ViewHolder {
 
         TextView apkText;
         LinearLayout linearLayout;

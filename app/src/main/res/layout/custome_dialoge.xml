@@ -25,9 +25,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:background="@color/fuckingcolor"
+        android:background="@color/purpelo"
         android:padding="80dp"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
         android:visibility="invisible" />
 
 </RelativeLayout>

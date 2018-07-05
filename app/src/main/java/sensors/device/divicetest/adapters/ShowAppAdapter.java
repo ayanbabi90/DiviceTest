@@ -3,6 +3,7 @@ package sensors.device.divicetest.adapters;
 
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +17,12 @@ import sensors.device.divicetest.R;
 
 public class ShowAppAdapter extends RecyclerView.Adapter<ShowAppAdapter.ShowAppAdapterViewHolder> {
 
-  private List<String> appProcessInfos;
-  private List<Drawable> drawables;
-  private List<String> pids;
+    private List<String> appProcessInfos;
+    private List<Drawable> drawables;
+    private List<String> pids;
 
     public ShowAppAdapter
-            (List<String> appProcessInfos, List<Drawable> drawables, List<String> pids){
+            (List<String> appProcessInfos, List<Drawable> drawables, List<String> pids) {
         this.appProcessInfos = appProcessInfos;
         this.drawables = drawables;
         this.pids = pids;
@@ -33,7 +34,7 @@ public class ShowAppAdapter extends RecyclerView.Adapter<ShowAppAdapter.ShowAppA
     @Override
     public ShowAppAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.appshow_layout, parent,false);
+        View view = layoutInflater.inflate(R.layout.appshow_layout, parent, false);
         return new ShowAppAdapterViewHolder(view);
     }
 
@@ -47,6 +48,13 @@ public class ShowAppAdapter extends RecyclerView.Adapter<ShowAppAdapter.ShowAppA
         holder.textView.setText(title);
         holder.pid.setText(pid);
         holder.imageView.setImageDrawable(icons);
+        holder.appLayout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                return true;
+            }
+        });
 
     }
 
@@ -60,16 +68,18 @@ public class ShowAppAdapter extends RecyclerView.Adapter<ShowAppAdapter.ShowAppA
         TextView textView;
         ImageView imageView;
         TextView pid;
+        ConstraintLayout appLayout;
+
         public ShowAppAdapterViewHolder(View itemView) {
             super(itemView);
 
             textView = itemView.findViewById(R.id.textView);
             imageView = itemView.findViewById(R.id.imageView);
             pid = itemView.findViewById(R.id.pidID);
+            appLayout = itemView.findViewById(R.id.appShowLayoutID);
 
         }
     }
-
 
 
 }

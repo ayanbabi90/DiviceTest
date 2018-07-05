@@ -2,9 +2,9 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="@color/fuckingcolor"/>
+            <solid android:color="@color/purpelo"/>
             <stroke
-                android:color="@color/fuckingcolor"
+                android:color="@color/deepPurple360"
                 android:width="2dp"
                 />
             <!--corners allow us to make the rounded corners button-->

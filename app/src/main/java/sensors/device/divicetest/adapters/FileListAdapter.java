@@ -31,7 +31,7 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.FileLi
     Context context;
 
 
-    public FileListAdapter(Context context,List<String> fileList, List<String> filePath,List<String> size){
+    public FileListAdapter(Context context, List<String> fileList, List<String> filePath, List<String> size) {
         this.fileList = fileList;
         this.context = context;
         this.filePath = filePath;
@@ -39,12 +39,11 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.FileLi
     }
 
 
-
     @NonNull
     @Override
     public FileListAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.files_xtra_layout, parent,false);
+        View view = layoutInflater.inflate(R.layout.files_xtra_layout, parent, false);
         return new FileListAdapterViewHolder(view);
     }
 
@@ -52,8 +51,7 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.FileLi
     public void onBindViewHolder(@NonNull final FileListAdapterViewHolder holder, final int position) {
         final String title = String.valueOf(fileList.get(position));
         holder.fileNameEID.setText(title);
-        Log.isLoggable("title",position);
-
+        Log.isLoggable("title", position);
 
 
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +61,7 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.FileLi
                 File fget = new File(filePath.get(position));
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 //To send the activity by type
-                intent.setDataAndType(Uri.fromFile(fget),"application/vnd.android.package-archive");
+                intent.setDataAndType(Uri.fromFile(fget), "application/vnd.android.package-archive");
                 (context).startActivity(intent);
 
             }
@@ -83,11 +81,11 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.FileLi
 
                         File fileTobeUsed = new File(filePath.get(position));
                         boolean b = fileTobeUsed.delete();
-                        if (!b){
+                        if (!b) {
 
-                            Toast.makeText(context, "error  "  + fileList.get(position), Toast.LENGTH_LONG).show();
-                        }else {
-                            Toast.makeText(context, "success  "  + fileList.get(position), Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "error  " + fileList.get(position), Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(context, "success  " + fileList.get(position), Toast.LENGTH_LONG).show();
                             fileList.remove(position);
                             notifyDataSetChanged();
                         }
@@ -134,7 +132,6 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.FileLi
 
 
     }
-
 
 
 }
