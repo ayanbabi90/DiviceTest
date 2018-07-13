@@ -24,9 +24,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activitys.RunningAppActivity"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".activitys.VideoActivity">
+        <activity
+            android:name=".activity.phoneBoosterActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".activity.junkCleanerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
 
@@ -35,10 +36,20 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-        <activity android:name=".activitys.Mp3_Activity" />
-        <activity android:name=".activitys.ApkManagerActivity" />
-        <activity android:name=".FragmentVActivity"
-            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".activity.Mp3_Activity" />
+        <activity
+            android:name=".activity.apkManagerActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".activity.deviceInfoActivity"
+            android:parentActivityName=".MainActivity" />
+
+
+        <activity android:name=".activity.CpuCooler"></activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

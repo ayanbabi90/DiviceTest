@@ -4,28 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentVActivity">
+    tools:context=".activity.deviceInfoActivity">
 
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar2"
-        android:layout_width="match_parent"
+        android:id="@+id/toolbarDeviceInfo"
+        android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabBackground="@color/colorPrimary"
         app:tabGravity="fill"
         app:tabIndicatorColor="@color/white"
         app:tabIndicatorHeight="2dp"
-        app:tabBackground="@color/colorPrimary"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark"
-        app:tabMode="scrollable">
+        app:tabMode="scrollable"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     </android.support.design.widget.TabLayout>
 

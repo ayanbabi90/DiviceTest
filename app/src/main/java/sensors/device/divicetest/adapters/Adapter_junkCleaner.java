@@ -22,28 +22,26 @@ import java.util.List;
 
 import sensors.device.divicetest.R;
 
-public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.FileListAdapterViewHolder> {
-
+public class Adapter_junkCleaner extends RecyclerView.Adapter<Adapter_junkCleaner.FileListAdapterViewHolder> {
 
     private List<String> fileList;
     private List<String> filePath;
-    List<String> size;
-    Context context;
+    private List<String> fileSize;
+    private Context context;
 
 
-    public FileListAdapter(Context context, List<String> fileList, List<String> filePath, List<String> size) {
+    public Adapter_junkCleaner(Context context, List<String> fileList, List<String> filePath, List<String> fileSize) {
         this.fileList = fileList;
         this.context = context;
         this.filePath = filePath;
-        this.size = size;
+        this.fileSize = fileSize;
     }
-
 
     @NonNull
     @Override
     public FileListAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.files_xtra_layout, parent, false);
+        View view = layoutInflater.inflate(R.layout.junk_cleaner_extended, parent, false);
         return new FileListAdapterViewHolder(view);
     }
 
@@ -66,6 +64,8 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.FileLi
 
             }
         });
+
+        holder.size.setText(fileSize.get(position));
 
         holder.linearLayout.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -127,6 +127,7 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.FileLi
             fileNameEID = itemView.findViewById(R.id.fileNameEID);
             imageView2 = itemView.findViewById(R.id.imageView2);
             linearLayout = itemView.findViewById(R.id.linearShFID);
+            size = itemView.findViewById(R.id.sizeViewID);
 
         }
 

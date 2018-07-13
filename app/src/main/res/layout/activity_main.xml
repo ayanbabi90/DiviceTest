@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -102,7 +101,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/exrt" />
 
                 <ImageButton
-                    android:id="@+id/folderImageID"
+                    android:id="@+id/junkClenerImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_marginLeft="52dp"
@@ -155,9 +154,9 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="25dp"
+                    android:layout_marginEnd="24dp"
                     android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
+                    android:layout_marginRight="24dp"
                     android:layout_marginStart="25dp"
                     android:text="App Manager"
                     android:textColor="@color/deepPurple360"
@@ -216,7 +215,7 @@
                     android:textColor="@color/deepPurple360"
                     android:textSize="12sp"
                     app:layout_constraintStart_toEndOf="@+id/exrt"
-                    app:layout_constraintTop_toBottomOf="@+id/folderImageID" />
+                    app:layout_constraintTop_toBottomOf="@+id/junkClenerImageView" />
 
                 <TextView
                     android:id="@+id/textView6"

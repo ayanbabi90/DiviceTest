@@ -21,28 +21,33 @@ import com.appolica.flubber.Flubber;
 import com.github.lzyzsd.circleprogress.ArcProgress;
 
 import github.nisrulz.easydeviceinfo.base.EasyMemoryMod;
-import sensors.device.divicetest.activitys.ApkManagerActivity;
-import sensors.device.divicetest.activitys.Mp3_Activity;
-import sensors.device.divicetest.activitys.RunningAppActivity;
+import sensors.device.divicetest.activity.CpuCooler;
+import sensors.device.divicetest.activity.Mp3_Activity;
+import sensors.device.divicetest.activity.apkManagerActivity;
+import sensors.device.divicetest.activity.deviceInfoActivity;
+import sensors.device.divicetest.activity.junkCleanerActivity;
+import sensors.device.divicetest.activity.phoneBoosterActivity;
 
 public class MainActivity extends AppCompatActivity {
-    ImageView filesImageV, processorImageV, mpr3img;
-    ArcProgress arcProgress;
-    ArcProgress arc_progress2;
-    ImageButton apkImage;
+    private ArcProgress arcProgress;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mpr3img = findViewById(R.id.dashMp3Id);
-        arc_progress2 = findViewById(R.id.arc_progress2);
-        filesImageV = findViewById(R.id.deviceInfoID);
-        processorImageV = findViewById(R.id.processorImageID);
-        apkImage = findViewById(R.id.apkImageID);
 
-        //*********************RAM*************************************
+        /*********************  View Binders ********************************************/
+        ImageView mpr3img = findViewById(R.id.dashMp3Id);
+        ArcProgress arc_progress2 = findViewById(R.id.arc_progress2);
+        ImageView deviceDash = findViewById(R.id.deviceInfoID);
+        ImageView ramBooster = findViewById(R.id.processorImageID);
+        ImageButton apkImage = findViewById(R.id.apkImageID);
+        ImageView junkClenerImageView = findViewById(R.id.junkClenerImageView);
+        ImageView cpuCooler = findViewById(R.id.temperatureImageID);
+
+        //*********************  RAM  *************************************
         arcProgress = findViewById(R.id.arc_progress);
 
         arcProgress.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         arcProgress.setStrokeWidth(18);
         arcProgress.setBottomTextSize(28);
 
+        /************************ RealTime Ram Value ****************************/
 
         final Handler handler = new Handler();
         handler.post(new Runnable() {
@@ -83,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //****************SD CARD***************************
+        /**********************   SD CARD  *********************************************/
         EasyMemoryMod easyMemoryMod = new EasyMemoryMod(MainActivity.this);
 
         String iA = String.valueOf(easyMemoryMod.convertToGb(easyMemoryMod.getAvailableInternalMemorySize()));
@@ -102,31 +108,44 @@ public class MainActivity extends AppCompatActivity {
         arc_progress2.setBottomTextSize(20);
         arc_progress2.setBottomText(iA2 + "GB" + "/ " + iT2 + "GB");
 
-
+        /**************************  APK Manager ****************************************************/
         apkImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ApkManagerActivity.class);
+                Intent intent = new Intent(MainActivity.this, apkManagerActivity.class);
                 startActivity(intent);
             }
         });
 
-        filesImageV.setOnClickListener(new View.OnClickListener() {
+        /******************************  Junk Cleaner ************************************************/
+        junkClenerImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, FragmentVActivity.class);
+                Intent intent = new Intent(MainActivity.this, junkCleanerActivity.class);
                 startActivity(intent);
-
             }
         });
-        processorImageV.setOnClickListener(new View.OnClickListener() {
+
+        /******************************************** Device info *************************************/
+        deviceDash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, RunningAppActivity.class);
+                Intent intent = new Intent(MainActivity.this, deviceInfoActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        /*********************************** RAM Booster **********************************************/
+        ramBooster.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, phoneBoosterActivity.class);
                 startActivity(intent);
             }
         });
 
+        /****************************************** Mp3 *********************************************/
         mpr3img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,7 +155,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /****************************************  CPU Cooler  **************************************/
+        cpuCooler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CpuCooler.class);
+                startActivity(intent);
+            }
+        });
 
+        /**************************** Android Permission ********************************************/
         AndroidPermissionChck();
     }
 

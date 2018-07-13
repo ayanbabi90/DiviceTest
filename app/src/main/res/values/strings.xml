@@ -7,5 +7,10 @@
     <string name="model_name">Model Name</string>
     <string name="android_version">Android Version</string>
     <string name="device_id">Device id</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
+    <string name="junk_cleaner">junk files found</string>
+    <string name="_29">29</string>
 
 </resources>

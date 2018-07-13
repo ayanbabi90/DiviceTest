@@ -15,13 +15,13 @@ import java.util.List;
 
 import sensors.device.divicetest.R;
 
-public class ShowAppAdapter extends RecyclerView.Adapter<ShowAppAdapter.ShowAppAdapterViewHolder> {
+public class Adapter_phoneBooster extends RecyclerView.Adapter<Adapter_phoneBooster.ShowAppAdapterViewHolder> {
 
     private List<String> appProcessInfos;
     private List<Drawable> drawables;
     private List<String> pids;
 
-    public ShowAppAdapter
+    public Adapter_phoneBooster
             (List<String> appProcessInfos, List<Drawable> drawables, List<String> pids) {
         this.appProcessInfos = appProcessInfos;
         this.drawables = drawables;
@@ -34,7 +34,7 @@ public class ShowAppAdapter extends RecyclerView.Adapter<ShowAppAdapter.ShowAppA
     @Override
     public ShowAppAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.appshow_layout, parent, false);
+        View view = layoutInflater.inflate(R.layout.phone_bhooster_extra, parent, false);
         return new ShowAppAdapterViewHolder(view);
     }
 
@@ -63,14 +63,14 @@ public class ShowAppAdapter extends RecyclerView.Adapter<ShowAppAdapter.ShowAppA
         return appProcessInfos.size();
     }
 
-    public class ShowAppAdapterViewHolder extends RecyclerView.ViewHolder {
+    class ShowAppAdapterViewHolder extends RecyclerView.ViewHolder {
 
         TextView textView;
         ImageView imageView;
         TextView pid;
         ConstraintLayout appLayout;
 
-        public ShowAppAdapterViewHolder(View itemView) {
+        ShowAppAdapterViewHolder(View itemView) {
             super(itemView);
 
             textView = itemView.findViewById(R.id.textView);

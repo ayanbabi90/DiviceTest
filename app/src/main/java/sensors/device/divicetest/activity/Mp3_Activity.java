@@ -1,4 +1,4 @@
-package sensors.device.divicetest.activitys;
+package sensors.device.divicetest.activity;
 
 import android.os.Bundle;
 import android.os.Environment;

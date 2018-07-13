@@ -70,7 +70,7 @@ public class Adapter_backup_apkManager extends RecyclerView.Adapter<Adapter_back
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
-                        File file2 = new File(apkList.get(position));
+                        File file2 = new File(apkPath.get(position));
                         boolean bf3 = file2.delete();
                         if (!bf3) {
                             Toast.makeText(context, "error deleting file" + apkList.get(position), Toast.LENGTH_LONG).show();
