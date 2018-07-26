@@ -23,19 +23,40 @@ import com.github.lzyzsd.circleprogress.ArcProgress;
 import github.nisrulz.easydeviceinfo.base.EasyMemoryMod;
 import sensors.device.divicetest.activity.CpuCooler;
 import sensors.device.divicetest.activity.Mp3_Activity;
+import sensors.device.divicetest.activity.SettingsActivity;
 import sensors.device.divicetest.activity.apkManagerActivity;
 import sensors.device.divicetest.activity.deviceInfoActivity;
 import sensors.device.divicetest.activity.junkCleanerActivity;
 import sensors.device.divicetest.activity.phoneBoosterActivity;
+import sensors.device.divicetest.services.TheService;
 
 public class MainActivity extends AppCompatActivity {
     private ArcProgress arcProgress;
+    ImageButton s1;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        /************************************** Services *************************************/
+
+        Intent intent = new Intent(this, TheService.class);
+        startService(intent);
+
+
+        /********************** Menu *****************************************************/
+        s1 = (ImageButton) findViewById(R.id.s1);
+        s1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
         /*********************  View Binders ********************************************/

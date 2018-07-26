@@ -12,6 +12,7 @@ import sensors.device.divicetest.fragments.BatteryFragment;
 import sensors.device.divicetest.fragments.DashBoardFragment;
 import sensors.device.divicetest.fragments.DeviceFragment;
 import sensors.device.divicetest.fragments.DisplayDFragment;
+import sensors.device.divicetest.fragments.SensorsFragment;
 
 public class deviceInfoActivity extends AppCompatActivity {
 
@@ -37,9 +38,11 @@ public class deviceInfoActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
         adapter = new TabAdapter(getSupportFragmentManager());
-        adapter.addFragment(new DashBoardFragment(), "Dash Board");
-        adapter.addFragment(new BatteryFragment(), "Battery");
+
         adapter.addFragment(new DeviceFragment(), "Device");
+        adapter.addFragment(new DashBoardFragment(), "Network Info");
+        adapter.addFragment(new BatteryFragment(), "Battery");
+        adapter.addFragment(new SensorsFragment(), "Sensors");
         adapter.addFragment(new DisplayDFragment(), "Display");
 
         viewPager.setAdapter(adapter);

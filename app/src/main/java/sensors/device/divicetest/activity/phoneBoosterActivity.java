@@ -13,7 +13,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Process;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -78,9 +77,9 @@ public class phoneBoosterActivity extends AppCompatActivity {
 
         new allAppRunningAsyncTask().execute();
 
-        FloatingActionButton floatingActionButton = findViewById(R.id.clenerBT);
+        Button buttonClearApp = findViewById(R.id.clenerBT);
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        buttonClearApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

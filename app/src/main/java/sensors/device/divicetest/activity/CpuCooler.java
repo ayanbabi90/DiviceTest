@@ -1,5 +1,6 @@
 package sensors.device.divicetest.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ProgressDialog;
@@ -12,17 +13,24 @@ import android.os.Process;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.hanks.htextview.HTextView;
 import com.hanks.htextview.HTextViewType;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import github.nisrulz.easydeviceinfo.base.EasyBatteryMod;
 import sensors.device.divicetest.R;
 import sensors.device.divicetest.adapters.AdapterCpuCooler;
+import sensors.device.divicetest.dataBase.DataBaseHelper;
 
 public class CpuCooler extends AppCompatActivity {
     AdapterCpuCooler adapterCpuCooler;
@@ -36,9 +44,33 @@ public class CpuCooler extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_cpu_cooler);
+        Toolbar toolbar = findViewById(R.id.toolbar234);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        final EasyBatteryMod easyBatteryMod = new EasyBatteryMod(CpuCooler.this);
+
+
+        //changing statusbar color
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.orange));
+        }
+
+
+
         new cpuCoolerAsyn().execute();
         Button coolerBt = findViewById(R.id.cpuCoolerBT);
+
+        final DataBaseHelper db = new DataBaseHelper(CpuCooler.this);
+        final HashMap<Integer, Long> timeChk = new HashMap<>();
 
 
         coolerBt.setOnClickListener(new View.OnClickListener() {
@@ -48,18 +80,41 @@ public class CpuCooler extends AppCompatActivity {
 
                 tno = findViewById(R.id.coolerNo);
                 tText = findViewById(R.id.coolerText);
-                tno.setVisibility(View.INVISIBLE);
+
+                float a = easyBatteryMod.getBatteryTemperature();
+                float s1 = (float) (a - 2.3);
+                tno.setAnimateType(HTextViewType.TYPER);
+                tno.animateText(String.valueOf(s1));
+
+                tno.setVisibility(View.VISIBLE);
                 tText.setVisibility(View.INVISIBLE);
+                String itn = String.valueOf(System.currentTimeMillis());
+
+                long m = System.currentTimeMillis();
+
+                timeChk.put(1, m);
+
+                boolean isInserted = db.insertValue(itn);
+                if (isInserted = true) {
+                    Toast.makeText(CpuCooler.this, "inserted data", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(CpuCooler.this, "inserted data", Toast.LENGTH_LONG).show();
+
+                }
 
             }
         });
 
+        String rt = String.valueOf(timeChk.get(1));
+
+        //   if (System.currentTimeMillis() == timeChk.get(1) || )
         new noOfRunningApp(CpuCooler.this).execute();
 
 
     }
 
 
+    @SuppressLint("StaticFieldLeak")
     public class cpuCoolerAsyn extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog = null;
 
@@ -116,6 +171,7 @@ public class CpuCooler extends AppCompatActivity {
     }
 
 
+    @SuppressLint("StaticFieldLeak")
     public class cleanCpuAsync extends AsyncTask<Void, Void, Void> {
 
         ProgressDialog progressDialog;
@@ -174,33 +230,37 @@ public class CpuCooler extends AppCompatActivity {
     }
 
 
-    public class noOfRunningApp extends AsyncTask<Void, String, String> {
+    @SuppressLint("StaticFieldLeak")
+    public class noOfRunningApp extends AsyncTask<Void, Float, Float> {
 
         Activity activity;
 
-        public noOfRunningApp(Activity activity) {
+        noOfRunningApp(Activity activity) {
             this.activity = activity;
         }
 
         @Override
-        protected String doInBackground(Void... voids) {
+        protected Float doInBackground(Void... voids) {
+//
+////            List<String> noApp = new ArrayList<>();
+////
+////            ActivityManager am = (ActivityManager) activity.getSystemService(Context.ACTIVITY_SERVICE);
+////            //   PackageManager pm = activity.getPackageManager();
+////
+////            List<ActivityManager.RunningAppProcessInfo> allProcess = am.getRunningAppProcesses();
+////
+////            for (ActivityManager.RunningAppProcessInfo ar : allProcess) {
+////                noApp.add(ar.processName);
+////            }
+//            String.valueOf(noApp.size());
 
-            List<String> noApp = new ArrayList<>();
+            EasyBatteryMod easyBatteryMod = new EasyBatteryMod(activity);
 
-            ActivityManager am = (ActivityManager) activity.getSystemService(Context.ACTIVITY_SERVICE);
-            //   PackageManager pm = activity.getPackageManager();
-
-            List<ActivityManager.RunningAppProcessInfo> allProcess = am.getRunningAppProcesses();
-
-            for (ActivityManager.RunningAppProcessInfo ar : allProcess) {
-                noApp.add(ar.processName);
-            }
-
-            return String.valueOf(noApp.size());
+            return easyBatteryMod.getBatteryTemperature();
         }
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(Float result) {
             HTextView tno = activity.findViewById(R.id.coolerNo);
             HTextView tText = activity.findViewById(R.id.coolerText);
 
@@ -208,11 +268,11 @@ public class CpuCooler extends AppCompatActivity {
             tText.setVisibility(View.VISIBLE);
 
             tno.setAnimateType(HTextViewType.RAINBOW);
-            tno.animateText(String.valueOf(result));
+            tno.animateText(String.valueOf(result) + ((char) 0x00B0) + "c");
 
 
             tText.setAnimateType(HTextViewType.TYPER);
-            tText.animateText("process need to kill");
+            tText.animateText("process");
 
 
             super.onPostExecute(result);

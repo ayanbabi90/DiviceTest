@@ -10,7 +10,10 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="245dp"
+        android:layout_height="150dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="36dp"
         android:background="@drawable/gradient_redo">
 
         <com.hanks.htextview.HTextView
@@ -19,8 +22,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="81dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/paytone_one"
             android:text="123"
             android:textColor="@color/white"
@@ -32,36 +35,39 @@
             android:id="@+id/coolerText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/coolerNo"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="99dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/coolerNo"
+            android:layout_marginEnd="106dp"
             android:fontFamily="@font/paytone_one"
             android:text="TextView"
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
             android:visibility="invisible" />
+
     </RelativeLayout>
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="430dp"
+        android:layout_height="400dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="64dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="9dp"
+        app:cardBackgroundColor="#FAF6F6  "
         app:cardCornerRadius="12dp"
         app:cardElevation="6dp"
-        app:contentPadding="4dp">
+        app:contentPadding="9dp">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/cpuRecylerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:background="#FAF6F6  " />
 
     </android.support.v7.widget.CardView>
 
@@ -77,4 +83,21 @@
         android:text="clean cpu process"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Tab"
         android:textColor="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="#FF512F"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar234"
+            layout="@layout/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
 </RelativeLayout>

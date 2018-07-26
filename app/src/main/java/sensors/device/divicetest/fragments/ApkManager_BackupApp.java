@@ -46,7 +46,7 @@ public class ApkManager_BackupApp extends Fragment {
 
         recyclerView = view.findViewById(R.id.apkRecylerViewID);
 
-        new LoadApplications(getActivity(), recyclerView).execute();
+        new LoadApplications(recyclerView, getActivity()).execute();
 
         return view;
     }
@@ -61,9 +61,9 @@ public class ApkManager_BackupApp extends Fragment {
         private ProgressDialog progress = null;
 
 
-        public LoadApplications(Activity activity, RecyclerView recyclerView) {
-            this.activity = activity;
+        public LoadApplications(RecyclerView recyclerView, Activity activity) {
             this.recyclerView = recyclerView;
+            this.activity = activity;
         }
 
         @Override

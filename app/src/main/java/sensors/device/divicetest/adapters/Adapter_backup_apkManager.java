@@ -4,8 +4,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v4.content.FileProvider;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,11 +53,41 @@ public class Adapter_backup_apkManager extends RecyclerView.Adapter<Adapter_back
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                File file = new File(apkPath.get(position));
 
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-                (context).startActivity(intent);
+                PackageManager pm = context.getPackageManager();
+
+
+                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.M) {
+                    File file = new File(apkPath.get(position));
+
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+
+                    if (intent.resolveActivity(pm) != null) {
+                        (context).startActivity(intent);
+                    } else {
+
+                        Toast.makeText(context, "No application found to handle the action", Toast.LENGTH_LONG).show();
+                    }
+
+                } else if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    File file = new File(apkPath.get(position));
+
+                    Uri app = FileProvider.getUriForFile(context, context
+                            .getApplicationContext()
+                            .getPackageName() + ".provider", file);
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setDataAndType(app, "application/vnd.android.package-archive");
+                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+                    if (intent.resolveActivity(pm) != null) {
+                        (context).startActivity(intent);
+                    } else {
+                        Toast.makeText(context, "No application found to handle the action", Toast.LENGTH_LONG).show();
+                    }
+
+
+                }
             }
         });
 

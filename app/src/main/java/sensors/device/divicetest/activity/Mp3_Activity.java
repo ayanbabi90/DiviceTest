@@ -43,7 +43,7 @@ public class Mp3_Activity extends AppCompatActivity {
         }
 
 
-        recyclerView.setAdapter(new Mp3Adapter(mp3FileList,mprPath,this));
+        recyclerView.setAdapter(new Mp3Adapter(mp3FileList, mprPath, getApplicationContext()));
 
 
     }
