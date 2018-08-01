@@ -1,33 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="320dp"
-    android:layout_height="465dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@drawable/corner_circle"
-    android:padding="5dp">
+    android:background="@drawable/gradient_blue_color_to">
 
-
-    <Button
-        android:id="@+id/okDID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="34dp"
-        android:text="chose"
-        android:textColor="@android:color/holo_purple" />
-
-
-    <ImageView
-        android:id="@+id/ImgV"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:background="@color/purpelo"
-        android:padding="80dp"
-        android:scaleType="centerCrop"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true">
+
+    </com.airbnb.lottie.LottieAnimationView>
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="156dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginRight="61dp"
+        android:fontFamily="@font/lato"
+        android:text="running app cleared."
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
         android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/textView25"
+        android:layout_marginLeft="105dp"
+        android:layout_marginStart="105dp"
+        android:fontFamily="@font/lato"
+        android:text="9"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+
+
+    <LinearLayout
+        android:id="@+id/banner_container993"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:orientation="vertical" />
 
 </RelativeLayout>

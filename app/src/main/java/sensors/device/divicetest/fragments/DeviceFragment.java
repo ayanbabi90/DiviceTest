@@ -123,4 +123,5 @@ public class DeviceFragment extends Fragment {
         return view;
     }
 
+
 }

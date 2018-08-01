@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#0575E6</color>
-    <color name="colorPrimaryDark">#021B79</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#0575e6</color>
+    <color name="colorPrimaryDark">#021b79</color>
+    <color name="colorAccent">#0575e6</color>
     <color name="white">#ffffff</color>
     <color name="deepPurple360">#2c355e</color>
     <color name="divider">#58439e</color>
     <color name="purple">#1A2057</color>
     <color name="purpelo">#1a2057</color>
     <color name="fuckingcolor">#f7f9f9</color>
-    <color name="orange">#FF512F</color>
+    <color name="orange">#ab47bc</color>
+    <color name="text_color_primary">#000000</color>
 </resources>

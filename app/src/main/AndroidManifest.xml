@@ -7,16 +7,18 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/app_icon_mainnn"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/app_icon_mainnn_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
@@ -29,7 +31,9 @@
         <activity
             android:name=".activity.phoneBoosterActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".activity.junkCleanerActivity">
+        <activity
+            android:name=".activity.junkCleanerActivity"
+            android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
 
@@ -38,7 +42,9 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.Mp3_Activity" />
+        <activity
+            android:name=".activity.Battery_Activity"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".activity.apkManagerActivity"
             android:parentActivityName=".MainActivity" />
@@ -71,8 +77,9 @@
         <activity
             android:name=".activity.SettingsActivity"
             android:parentActivityName=".MainActivity" />
-
-
+        <activity
+            android:name=".activity.Add_Activity"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

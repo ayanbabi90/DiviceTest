@@ -20,16 +20,15 @@
 
             <com.github.lzyzsd.circleprogress.ArcProgress
                 android:id="@+id/arc_progress"
-                android:layout_width="215dp"
-                android:layout_height="215dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginStart="8dp"
+                android:layout_width="205dp"
+                android:layout_height="205dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginRight="3dp"
                 android:layout_weight="60"
                 android:clickable="true"
                 android:visibility="visible"
                 app:arc_bottom_text="RAM"
-                app:arc_finished_color="#ffffff"
+                app:arc_finished_color="@color/white"
                 app:arc_progress="68"
                 app:arc_text_color="#ffffff"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -44,14 +43,15 @@
                 android:layout_height="115dp"
                 android:layout_margin="8dp"
                 android:layout_marginBottom="88dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginTop="135dp"
                 android:layout_weight="40"
                 android:clickable="true"
                 android:padding="8dp"
                 app:arc_bottom_text="SDCARD"
-                app:arc_finished_color="#ffffff"
+                app:arc_finished_color="@color/white"
+                app:arc_progress="80"
                 app:arc_text_color="#ffffff"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -62,9 +62,7 @@
                 android:id="@+id/imageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:background="@android:color/transparent"
                 app:layout_constraintEnd_toStartOf="@+id/s1"
                 app:layout_constraintTop_toTopOf="parent"
@@ -74,13 +72,29 @@
                 android:id="@+id/s1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="4dp"
                 android:background="@android:color/transparent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@mipmap/settings_nav" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="Q Battery Booster"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
         </android.support.constraint.ConstraintLayout>
     </LinearLayout>
@@ -98,10 +112,11 @@
             android:id="@+id/cardView2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
-            app:cardBackgroundColor="@android:color/background_light"
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="12dp"
             app:cardElevation="12dp">
 
@@ -118,8 +133,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:paddingBottom="10dp">
+                        android:layout_weight="1">
 
                         <android.support.constraint.ConstraintLayout
                             android:layout_width="match_parent"
@@ -131,7 +145,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/ripple_effects"
-                                android:src="@mipmap/device_details"
+                                android:src="@mipmap/dvcm_5"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -141,6 +155,7 @@
                                 android:id="@+id/textView5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/lato_bold"
                                 android:text="Device Info"
                                 android:textColor="@color/deepPurple360"
                                 android:textSize="12sp"
@@ -148,6 +163,16 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/deviceInfoID" />
+
+                            <View
+                                android:id="@+id/divider12"
+                                android:layout_width="1dp"
+                                android:layout_height="95dp"
+                                android:layout_marginTop="26dp"
+                                android:background="?android:attr/listDivider"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
                         </android.support.constraint.ConstraintLayout>
 
@@ -157,8 +182,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:paddingBottom="10dp">
+                        android:layout_weight="1">
 
 
                         <android.support.constraint.ConstraintLayout
@@ -171,7 +195,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/ripple_effects"
-                                android:src="@mipmap/app_launch"
+                                android:src="@mipmap/rock_4"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -181,13 +205,24 @@
                                 android:id="@+id/exrt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Phone Booster"
+                                android:fontFamily="@font/lato_bold"
+                                android:text="Ram Booster"
                                 android:textColor="@color/deepPurple360"
                                 android:textSize="12sp"
                                 android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/processorImageID" />
+
+                            <View
+                                android:id="@+id/divider11"
+                                android:layout_width="1dp"
+                                android:layout_height="95dp"
+                                android:layout_marginTop="26dp"
+                                android:background="?android:attr/listDivider"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
 
                         </android.support.constraint.ConstraintLayout>
@@ -198,8 +233,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:paddingBottom="10dp">
+                        android:layout_weight="1">
 
 
                         <android.support.constraint.ConstraintLayout
@@ -211,7 +245,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/ripple_effects"
-                                android:src="@mipmap/apkico"
+                                android:src="@mipmap/apkm_5"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -221,6 +255,7 @@
                                 android:id="@+id/textView3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/lato_bold"
                                 android:text="App Manager"
                                 android:textColor="@color/deepPurple360"
                                 android:textSize="12sp"
@@ -259,7 +294,7 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/ripple_effects"
                                 android:soundEffectsEnabled="true"
-                                android:src="@mipmap/mp3ico"
+                                android:src="@mipmap/btry_1"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -269,13 +304,35 @@
                                 android:id="@+id/textView4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Music"
+                                android:fontFamily="@font/lato_bold"
+                                android:text="Battery Saver"
                                 android:textColor="@color/deepPurple360"
                                 android:textSize="12sp"
                                 android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/dashMp3Id" />
+
+                            <View
+                                android:id="@+id/divider8"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginLeft="24dp"
+                                android:layout_marginStart="5dp"
+                                android:background="?android:attr/listDivider"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:id="@+id/divider9"
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginBottom="8dp"
+                                android:background="?android:attr/listDivider"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
 
                         </android.support.constraint.ConstraintLayout>
@@ -299,7 +356,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/ripple_effects"
-                                android:src="@mipmap/temprature"
+                                android:src="@mipmap/tem_3"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -309,13 +366,33 @@
                                 android:id="@+id/textView6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="CPU Cooler"
+                                android:fontFamily="@font/lato_bold"
+                                android:text="Cpu Cooler"
                                 android:textColor="@color/deepPurple360"
                                 android:textSize="12sp"
                                 android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/temperatureImageID" />
+
+                            <View
+                                android:id="@+id/divider6"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="?android:attr/listDivider"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <View
+                                android:id="@+id/divider10"
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginBottom="8dp"
+                                android:background="?android:attr/listDivider"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
                         </android.support.constraint.ConstraintLayout>
 
@@ -339,7 +416,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/ripple_effects"
-                                android:src="@mipmap/trashbin"
+                                android:src="@mipmap/trsh_4"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -349,6 +426,7 @@
                                 android:id="@+id/textView2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/lato_bold"
                                 android:text="Junk Cleaner"
                                 android:textColor="@color/deepPurple360"
                                 android:textSize="12sp"
@@ -356,6 +434,17 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/junkClenerImageView" />
+
+                            <View
+                                android:id="@+id/divider5"
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginRight="24dp"
+                                android:background="?android:attr/listDivider"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
                         </android.support.constraint.ConstraintLayout>
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,20 +8,25 @@
     tools:context=".activity.phoneBoosterActivity">
 
 
-    <Button
-        android:id="@+id/clenerBT"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+    <LinearLayout
+        android:id="@+id/linear1223"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/lay_cor"
-        android:clickable="true"
-        android:focusable="true"
-        android:text="Tap to Clean"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
+        android:background="@color/colorPrimaryDark"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/toolbarphoneB"
+            layout="@layout/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 
 
     <RelativeLayout
@@ -31,8 +36,10 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/r12"
-        android:layout_marginTop="36dp"
-        android:background="@drawable/gradient_redo"
+        android:background="@drawable/gradient_blue_color_to"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear1223"
         tools:ignore="UnknownId">
 
 
@@ -43,10 +50,11 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="53dp"
-            android:layout_marginTop="14dp"
             android:text="29"
             android:textColor="@color/fuckingcolor"
-            android:textSize="36sp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="53dp"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
 
@@ -54,16 +62,26 @@
 
 
     <android.support.v7.widget.CardView
+        android:id="@+id/cardView4"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="64dp"
-        android:layout_marginLeft="9dp"
-        android:layout_marginRight="9dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="6dp"
-        app:contentPadding="9dp">
+        android:layout_marginTop="80dp"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/runningAppTemp">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/showAppRecylerID"
@@ -75,20 +93,28 @@
     </android.support.v7.widget.CardView>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="39dp"
-        android:layout_alignParentTop="true"
+    <Button
+        android:id="@+id/clenerBT"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="#FF512F"
-        android:orientation="vertical">
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/lay_cor"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="Tap to Clean"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView4" />
 
-        <include
-            android:id="@+id/toolbar235"
-            layout="@layout/toolbar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
-    </LinearLayout>
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

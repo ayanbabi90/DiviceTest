@@ -52,7 +52,7 @@ public class ApkManager_InstalledApp extends Fragment {
 
     public class AllAppRuning extends AsyncTask<Void, Void, Void> {
 
-        ProgressDialog progressDialog;
+        ProgressDialog progressDialog = null;
         RecyclerView recyclerView;
         Activity activity;
 
@@ -125,7 +125,8 @@ public class ApkManager_InstalledApp extends Fragment {
 
         @Override
         protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(activity, "Searching installed App", "searching initiated...");
+            progressDialog = ProgressDialog.show(activity, "Process Initiated", "Searching installed apps..");
+
             super.onPreExecute();
         }
     }

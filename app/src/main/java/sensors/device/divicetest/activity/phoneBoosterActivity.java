@@ -4,6 +4,8 @@ import android.app.ActivityManager;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -16,12 +18,18 @@ import android.os.Process;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import com.airbnb.lottie.LottieAnimationView;
+import com.facebook.ads.AdSize;
+import com.facebook.ads.AdView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,11 +47,14 @@ public class phoneBoosterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_booster);
-        /*Toolbar toolbar = findViewById(R.id.toolbar6);
+        Toolbar toolbar = findViewById(R.id.toolbarphoneB);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        /*
 
         EasyBatteryMod easyBatteryMod = new EasyBatteryMod(phoneBoosterActivity.this);
 
@@ -74,6 +85,26 @@ public class phoneBoosterActivity extends AppCompatActivity {
             }
         });
 
+        final Dialog dialog = new Dialog(phoneBoosterActivity.this, R.style.Theme_AppCompat_NoActionBar);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.custome_dialoge);
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        wlp.gravity = Gravity.CENTER;
+        wlp.flags &= ~WindowManager.LayoutParams.FLAG_BLUR_BEHIND;
+        window.setAttributes(wlp);
+        dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+
+        AdView adview2 = new AdView(phoneBoosterActivity.this, "681947592150931_683755865303437", AdSize.BANNER_HEIGHT_50);
+        // Find the Ad Container
+        LinearLayout adContainer = dialog.findViewById(R.id.banner_container993);
+        // Add the ad view to your activity layout
+        adContainer.addView(adview2);
+        // Request an ad
+        adview2.loadAd();
+
 
         new allAppRunningAsyncTask().execute();
 
@@ -83,39 +114,68 @@ public class phoneBoosterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                final Dialog dialog = new Dialog(phoneBoosterActivity.this);
+                SharedPreferences spf = getApplicationContext().getSharedPreferences("phone_booster", MODE_PRIVATE);
+                SharedPreferences.Editor editor = spf.edit();
+                editor.putString("didStart", "yes");
 
-                dialog.setContentView(R.layout.custome_dialoge);
+                dialog.show();
 
-                final ImageView img = dialog.findViewById(R.id.ImgV);
+                LottieAnimationView animationView = dialog.findViewById(R.id.animation_view2);
+                animationView.setAnimation(R.raw.clear);
+                animationView.playAnimation();
 
-                Button button = dialog.findViewById(R.id.okDID);
-
-                Glide.with(getApplicationContext()).asGif().load(R.drawable.pokapok).into(img);
-                img.setVisibility(View.VISIBLE);
-
-
-                button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-
-                    }
-                });
-
-                final Handler handler = new Handler();
-                final Runnable runnable = new Runnable() {
+                Handler worker = new Handler();
+                worker.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
-                        img.setVisibility(View.GONE);
+                        LottieAnimationView animationView = dialog.findViewById(R.id.animation_view2);
+                        animationView.setAnimation(R.raw.particle_explosion);
+                        animationView.playAnimation();
                     }
-                };
-                handler.postDelayed(runnable, 10000);
+                }, 3000);
+
+                Handler worker2 = new Handler();
+                worker2.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        LottieAnimationView animationView = dialog.findViewById(R.id.animation_view2);
+                        animationView.setAnimation(R.raw.done_clear);
+                        animationView.playAnimation();
+
+                        SharedPreferences spf = getSharedPreferences("totalApp", MODE_PRIVATE);
+                        String get = spf.getString("app", "");
+
+                        TextView textView = dialog.findViewById(R.id.textView28);
+                        textView.setVisibility(View.VISIBLE);
 
 
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
+                        TextView textView1 = dialog.findViewById(R.id.textView25);
+                        textView1.setVisibility(View.VISIBLE);
+
+
+                        TextView textView2 = dialog.findViewById(R.id.textView28);
+                        textView.setVisibility(View.VISIBLE);
+                        textView2.setText(get);
+                    }
+
+
+                }, 5000);
+
+                Handler handlerGo = new Handler();
+                handlerGo.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        dialog.dismiss();
+
+                        Intent intent = new Intent(phoneBoosterActivity.this, Add_Activity.class);
+                        startActivity(intent);
+
+                    }
+                }, 8000);
+
+
+
+
 
 
                 ActivityManager actvityManager = (ActivityManager) phoneBoosterActivity.this.getSystemService(ACTIVITY_SERVICE);
@@ -130,6 +190,7 @@ public class phoneBoosterActivity extends AppCompatActivity {
                             android.os.Process.killProcess(rp.pid);
                             actvityManager.killBackgroundProcesses(rp.processName);
                             actvityManager.restartPackage(rp.processName);
+
 
 
                         }
@@ -154,6 +215,7 @@ public class phoneBoosterActivity extends AppCompatActivity {
 
     public class allAppRunningAsyncTask extends AsyncTask<Void, Void, Void> {
         private ProgressDialog progressDialog = null;
+        Dialog dialog = null;
 
 
         @Override
@@ -167,8 +229,6 @@ public class phoneBoosterActivity extends AppCompatActivity {
             List<String> appList = new ArrayList<>();
             List<Drawable> appListIcons = new ArrayList<>();
             List<String> pids = new ArrayList<>();
-
-
             List<ActivityManager.RunningAppProcessInfo> allTasks = am.getRunningAppProcesses();
 
             for (ActivityManager.RunningAppProcessInfo allTask : allTasks) {
@@ -198,8 +258,21 @@ public class phoneBoosterActivity extends AppCompatActivity {
                 }
             }
 
+
             adapterPhoneBooster = new Adapter_phoneBooster(appList, appListIcons, pids);
 
+            SharedPreferences spf = getApplicationContext().getSharedPreferences("totalApp", MODE_PRIVATE);
+            SharedPreferences.Editor editor = spf.edit();
+            String st = String.valueOf(appList.size());
+            editor.putString("app", st);
+            editor.apply();
+
+            Thread.currentThread();
+            try {
+                Thread.sleep(8000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             return null;
         }
@@ -210,7 +283,7 @@ public class phoneBoosterActivity extends AppCompatActivity {
             recyclerView = findViewById(R.id.showAppRecylerID);
             recyclerView.setLayoutManager(new LinearLayoutManager(phoneBoosterActivity.this));
             recyclerView.setAdapter(adapterPhoneBooster);
-            progressDialog.dismiss();
+            dialog.dismiss();
 
             super.onPostExecute(result);
         }
@@ -218,9 +291,50 @@ public class phoneBoosterActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(phoneBoosterActivity.this, "Searching", "App Loading");
+
+
+            dialog = new Dialog(phoneBoosterActivity.this, R.style.Theme_AppCompat_NoActionBar);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.custome_phonebooster);
+            Window window = dialog.getWindow();
+            WindowManager.LayoutParams wlp = window.getAttributes();
+            wlp.gravity = Gravity.CENTER;
+            wlp.flags &= ~WindowManager.LayoutParams.FLAG_BLUR_BEHIND;
+            window.setAttributes(wlp);
+            dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
+
+            AdView adview1 = new AdView(phoneBoosterActivity.this, "681947592150931_683755865303437", AdSize.BANNER_HEIGHT_50);
+            // Find the Ad Container
+            LinearLayout adContainer = dialog.findViewById(R.id.banner_container994);
+            // Add the ad view to your activity layout
+            adContainer.addView(adview1);
+            // Request an ad
+            adview1.loadAd();
+
+
+            LottieAnimationView la2 = dialog.findViewById(R.id.animation_view);
+            la2.setAnimation(R.raw.phone_scanning);
+            la2.playAnimation();
+
+            Handler h2 = new Handler();
+            h2.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    LottieAnimationView la = dialog.findViewById(R.id.animation_view);
+                    la.setAnimation(R.raw.pb2);
+                    la.playAnimation();
+                }
+            }, 7000);
+
+
+
+
+
             super.onPreExecute();
         }
+
 
     }
 

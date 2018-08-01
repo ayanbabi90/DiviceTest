@@ -1,36 +1,50 @@
 package sensors.device.divicetest.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Process;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.facebook.ads.AdSize;
+import com.facebook.ads.AdView;
 import com.hanks.htextview.HTextView;
 import com.hanks.htextview.HTextViewType;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import github.nisrulz.easydeviceinfo.base.EasyBatteryMod;
 import sensors.device.divicetest.R;
 import sensors.device.divicetest.adapters.AdapterCpuCooler;
-import sensors.device.divicetest.dataBase.DataBaseHelper;
 
 public class CpuCooler extends AppCompatActivity {
     AdapterCpuCooler adapterCpuCooler;
@@ -44,33 +58,53 @@ public class CpuCooler extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_cpu_cooler);
+
         Toolbar toolbar = findViewById(R.id.toolbar234);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("");
+        getSupportActionBar().setTitle("CPU cooler");
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final EasyBatteryMod easyBatteryMod = new EasyBatteryMod(CpuCooler.this);
 
+        AndroidPermissionChck();
 
-        //changing statusbar color
-        if (android.os.Build.VERSION.SDK_INT >= 21) {
-            Window window = this.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(this.getResources().getColor(R.color.orange));
-        }
+//        //changing statusbar color
+//        if (android.os.Build.VERSION.SDK_INT >= 21) {
+//            Window window = this.getWindow();
+//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//            window.setStatusBarColor(this.getResources().getColor(R.color.orange));
+//        }
 
 
 
         new cpuCoolerAsyn().execute();
         Button coolerBt = findViewById(R.id.cpuCoolerBT);
 
-        final DataBaseHelper db = new DataBaseHelper(CpuCooler.this);
-        final HashMap<Integer, Long> timeChk = new HashMap<>();
+
+        final Dialog dialog = new Dialog(CpuCooler.this, R.style.Theme_AppCompat_NoActionBar);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.custome_cpu_cooler_end);
+        AdView adView = new AdView(CpuCooler.this, "681947592150931_683707151974975", AdSize.BANNER_HEIGHT_50);
+        // Find the Ad Container
+        LinearLayout adContainer = dialog.findViewById(R.id.banner_container991);
+        // Add the ad view to your activity layout
+        adContainer.addView(adView);
+        // Request an ad
+        adView.loadAd();
+
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        wlp.gravity = Gravity.CENTER;
+        wlp.flags &= ~WindowManager.LayoutParams.FLAG_BLUR_BEHIND;
+        window.setAttributes(wlp);
+        dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+
+
 
 
         coolerBt.setOnClickListener(new View.OnClickListener() {
@@ -92,20 +126,51 @@ public class CpuCooler extends AppCompatActivity {
 
                 long m = System.currentTimeMillis();
 
-                timeChk.put(1, m);
 
-                boolean isInserted = db.insertValue(itn);
-                if (isInserted = true) {
-                    Toast.makeText(CpuCooler.this, "inserted data", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(CpuCooler.this, "inserted data", Toast.LENGTH_LONG).show();
+                dialog.show();
 
-                }
+
+                final LottieAnimationView ltanv = dialog.findViewById(R.id.animation_view8);
+                ltanv.setAnimation(R.raw.particle_explosion);
+                ltanv.playAnimation();
+
+                final TextView textView = dialog.findViewById(R.id.textView2211);
+                final TextView textView1 = dialog.findViewById(R.id.textView36);
+
+                SharedPreferences spf = getApplicationContext().getSharedPreferences("appRuning1", MODE_PRIVATE);
+                final String s = spf.getString("appO", "");
+
+
+                Handler h1 = new Handler();
+                h1.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        textView.setVisibility(View.VISIBLE);
+                        textView1.setVisibility(View.VISIBLE);
+                        textView1.setText(s);
+                        ltanv.setVisibility(View.INVISIBLE);
+                        LottieAnimationView loti2 = dialog.findViewById(R.id.animation_view6);
+                        loti2.setAnimation(R.raw.done_clear);
+                        loti2.playAnimation();
+                    }
+                }, 5000);
+
+                Handler h2 = new Handler();
+                h2.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        Intent intent = new Intent(CpuCooler.this, Add_Activity.class);
+                        startActivity(intent);
+
+                    }
+                }, 8000);
+
+
 
             }
         });
 
-        String rt = String.valueOf(timeChk.get(1));
 
         //   if (System.currentTimeMillis() == timeChk.get(1) || )
         new noOfRunningApp(CpuCooler.this).execute();
@@ -114,9 +179,31 @@ public class CpuCooler extends AppCompatActivity {
     }
 
 
+    private void AndroidPermissionChck() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_LONG).show();
+                ActivityCompat.requestPermissions(this, new String[]
+                                {
+                                        Manifest.permission.KILL_BACKGROUND_PROCESSES
+                                }
+                        , 1);
+
+            }
+        }
+
+    }
+
+
+
+
+
     @SuppressLint("StaticFieldLeak")
     public class cpuCoolerAsyn extends AsyncTask<Void, Void, Void> {
-        ProgressDialog progressDialog = null;
+        Dialog dialog = null;
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -149,6 +236,21 @@ public class CpuCooler extends AppCompatActivity {
             }
             adapterCpuCooler = new AdapterCpuCooler(AllappRunning, appIcons, CpuCooler.this);
 
+            SharedPreferences spf = getApplicationContext().getSharedPreferences("appRuning1", MODE_PRIVATE);
+            SharedPreferences.Editor editor = spf.edit();
+
+            String s = String.valueOf(AllappRunning.size());
+            editor.putString("appO", s);
+            editor.apply();
+
+
+            Thread.currentThread();
+            try {
+                Thread.sleep(4000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             return null;
         }
 
@@ -157,14 +259,56 @@ public class CpuCooler extends AppCompatActivity {
             RecyclerView recyclerView = findViewById(R.id.cpuRecylerView);
             recyclerView.setLayoutManager(new LinearLayoutManager(CpuCooler.this));
             recyclerView.setAdapter(adapterCpuCooler);
-            progressDialog.dismiss();
+            dialog.dismiss();
+
             super.onPostExecute(aVoid);
         }
 
 
         @Override
         protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(CpuCooler.this, "Searching", "finding all app process");
+
+            dialog = new Dialog(CpuCooler.this, R.style.Theme_AppCompat_NoActionBar);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.custome_cpu_cooler);
+            Window window = dialog.getWindow();
+            WindowManager.LayoutParams wlp = window.getAttributes();
+            wlp.gravity = Gravity.CENTER;
+            wlp.flags &= ~WindowManager.LayoutParams.FLAG_BLUR_BEHIND;
+            window.setAttributes(wlp);
+            dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
+
+            AdView adview1 = new AdView(CpuCooler.this, "681947592150931_683743018638055", AdSize.BANNER_HEIGHT_50);
+            // Find the Ad Container
+            LinearLayout adContainer = dialog.findViewById(R.id.banner_container992);
+            // Add the ad view to your activity layout
+            adContainer.addView(adview1);
+            // Request an ad
+            adview1.loadAd();
+
+            final LottieAnimationView lav = dialog.findViewById(R.id.animation_view4);
+            lav.setAnimation(R.raw.verify_phone);
+            lav.playAnimation();
+
+            Handler handler1 = new Handler();
+            handler1.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    TextView textView = dialog.findViewById(R.id.textView221);
+                    textView.setVisibility(View.INVISIBLE);
+                    lav.setVisibility(View.INVISIBLE);
+
+                    LottieAnimationView lav1 = dialog.findViewById(R.id.animation_view5);
+                    lav1.setAnimation(R.raw.anim796_check);
+                    lav1.playAnimation();
+
+                }
+            }, 3000);
+
+
+
             super.onPreExecute();
         }
 

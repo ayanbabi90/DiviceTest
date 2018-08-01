@@ -21,8 +21,8 @@ import com.appolica.flubber.Flubber;
 import com.github.lzyzsd.circleprogress.ArcProgress;
 
 import github.nisrulz.easydeviceinfo.base.EasyMemoryMod;
+import sensors.device.divicetest.activity.Battery_Activity;
 import sensors.device.divicetest.activity.CpuCooler;
-import sensors.device.divicetest.activity.Mp3_Activity;
 import sensors.device.divicetest.activity.SettingsActivity;
 import sensors.device.divicetest.activity.apkManagerActivity;
 import sensors.device.divicetest.activity.deviceInfoActivity;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         /********************** Menu *****************************************************/
-        s1 = (ImageButton) findViewById(R.id.s1);
+        s1 = findViewById(R.id.s1);
         s1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
             int ramPercentage = getRamPercentage();
             arcProgress.setProgress(ramPercentage);
+
             int ramF = getFreeRam();
             int ramT = getTotalRam();
             String valu2 = String.valueOf(ramT);
@@ -170,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
         mpr3img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Mp3_Activity.class);
+                Intent intent = new Intent(MainActivity.this, Battery_Activity.class);
                 startActivity(intent);
 
             }

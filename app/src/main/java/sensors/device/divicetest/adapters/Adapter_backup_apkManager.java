@@ -73,9 +73,7 @@ public class Adapter_backup_apkManager extends RecyclerView.Adapter<Adapter_back
                 } else if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     File file = new File(apkPath.get(position));
 
-                    Uri app = FileProvider.getUriForFile(context, context
-                            .getApplicationContext()
-                            .getPackageName() + ".provider", file);
+                    Uri app = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", file);
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setDataAndType(app, "application/vnd.android.package-archive");
                     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);

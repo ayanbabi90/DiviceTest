@@ -2,7 +2,6 @@ package sensors.device.divicetest.fragments;
 
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -52,13 +51,12 @@ public class ApkManager_BackupApp extends Fragment {
     }
 
 
-    //The AsyncTask*********************************************************
+    //*************************   The AsyncTask  ************************************
     private class LoadApplications extends AsyncTask<Void, Void, Void> {
         //To get the Activity
         Activity activity;
         //To bind the activity
         RecyclerView recyclerView;
-        private ProgressDialog progress = null;
 
 
         public LoadApplications(RecyclerView recyclerView, Activity activity) {
@@ -97,14 +95,7 @@ public class ApkManager_BackupApp extends Fragment {
             recyclerView = getView().findViewById(R.id.apkRecylerViewID);
             recyclerView.setLayoutManager(new LinearLayoutManager(activity));
             recyclerView.setAdapter(adapterBackupapkManager);
-            progress.dismiss();
             super.onPostExecute(result);
-        }
-
-        @Override
-        protected void onPreExecute() {
-            progress = ProgressDialog.show(activity, "Searching", "App Loading");
-            super.onPreExecute();
         }
 
 
